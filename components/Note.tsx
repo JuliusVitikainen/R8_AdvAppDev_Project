@@ -4,14 +4,15 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 interface NoteProps {
     title: string;
     content: string;
+    color?: string;
 }
 
 const { width } = Dimensions.get('window');
 const noteSize = (width - 32) / 2 - 16;
 
-const Note: React.FC<NoteProps> = ({ title, content }) => {
+const Note: React.FC<NoteProps> = ({ title, content, color = "lightblue" }) => {
     return (
-        <View style={[styles.note, { width: noteSize, height: noteSize }]}>
+        <View style={[styles.note, { width: noteSize, height: noteSize, backgroundColor: color }]}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.content}>{content}</Text>
         </View>

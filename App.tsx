@@ -13,7 +13,6 @@ const App: React.FC = () => {
           name="NotesScreen"
           component={NotesScreen}
           options={{
-            title: "Notes",
             headerTitleAlign: "center"
           }} />
       </Stack.Navigator>
