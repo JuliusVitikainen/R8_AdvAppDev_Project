@@ -20,7 +20,8 @@ const NewNoteScreen: React.FC = () => {
     const colorOptions = [
         { label: "Blue", value: "lightblue" },
         { label: "Green", value: "lightgreen" },
-        { label: "Yellow", value: "yellow" },
+        { label: "Yellow", value: "#fff69b" },
+        { label: "Pink", value: "#f6c2d9" },
     ];
 
     const handleColorSelect = (color) => {
@@ -78,26 +79,28 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         backgroundColor: "#f5f5f5",
+        justifyContent: 'space-between',
     },
     titleInput: {
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,
-        marginBottom: 16,
+        marginBottom: 30,
         paddingHorizontal: 8,
     },
     largeInput: {
+        flex: 1,
         height: 120,
         borderColor: 'gray',
         borderWidth: 1,
-        marginBottom: 16,
+        marginBottom: 30,
         paddingHorizontal: 8,
         textAlignVertical: 'top',
     },
     colorOptionsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginBottom: 16,
+        marginBottom: 30,
     },
     colorOption: {
         width: 40,
