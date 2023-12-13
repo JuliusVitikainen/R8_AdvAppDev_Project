@@ -4,6 +4,7 @@ import { NoteData } from "../types/NoteData";
 interface NoteContextType {
     notes: NoteData[];
     addNote: (note: NoteData) => void;
+    editNote: (note: NoteData) => void;
 }
 
 const NoteContext = createContext<NoteContextType | undefined>(undefined);
@@ -19,8 +20,22 @@ export const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
         setNotes((prevNotes) => [...prevNotes, note]);
     };
 
+    const editNote = (updatedNote: NoteData) => {
+        setNotes((prevNotes) => {
+            const index = prevNotes.findIndex((note) => note.title === updatedNote.title);
+
+            if (index !== -1) {
+                const updatedNotes = [...prevNotes];
+                updatedNotes[index] = { ...updatedNotes[index], ...updatedNote };
+                return updatedNotes;
+            }
+
+            return prevNotes;
+        });
+    };
+
     return (
-        <NoteContext.Provider value={{ notes, addNote }}>
+        <NoteContext.Provider value={{ notes, addNote, editNote }}>
             {children}
         </NoteContext.Provider>
     );
