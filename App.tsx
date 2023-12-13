@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StackParamList } from './types/Navigation';
 import NotesScreen from './screens/NotesScreen';
 import NewNoteScreen from './screens/NewNoteScreen';
+import EditNoteScreen from './screens/EditNoteScreen';
 import { NoteProvider } from './contexts/NoteContext';
 
 const Stack = createStackNavigator<StackParamList>();
@@ -19,7 +20,8 @@ const App: React.FC = () => {
           initialRouteName={"NotesScreen"}
         >
           <Stack.Screen name="NotesScreen" component={NotesScreen} />
-          <Stack.Screen name= "NewNoteScreen" component={NewNoteScreen} />
+          <Stack.Screen name="NewNoteScreen" component={NewNoteScreen} />
+          <Stack.Screen name="EditNoteScreen" component={EditNoteScreen} />
 
         </Stack.Navigator>
       </NoteProvider>

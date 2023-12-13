@@ -10,7 +10,15 @@ const NotesScreen: React.FC = () => {
 
     const { notes } = useNoteContext();
 
-    const renderNote = ({ item }) => <Note title={item.title} content={item.content} color={item.color} />;
+    const renderNote = ({ item }) => (
+        <TouchableOpacity
+            onPress={() => {
+                navigation.navigate('EditNoteScreen', { note: item });
+            }}
+        >
+            <Note title={item.title} content={item.content} color={item.color} />
+        </TouchableOpacity>
+    );
 
     useEffect(() => {
         navigation.setOptions({
