@@ -22,7 +22,7 @@ export const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
 
     const editNote = (updatedNote: NoteData) => {
         setNotes((prevNotes) => {
-            const index = prevNotes.findIndex((note) => note.title === updatedNote.title);
+            const index = prevNotes.findIndex((note) => note.id === updatedNote.id);
 
             if (index !== -1) {
                 const updatedNotes = [...prevNotes];

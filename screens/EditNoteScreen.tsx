@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Button, TextInput } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-
-import Note from '../components/Note';
 import { useNoteContext } from '../contexts/NoteContext';
 
 const EditNotesScreen: React.FC = () => {
@@ -54,6 +52,7 @@ const EditNotesScreen: React.FC = () => {
 
     const handleUpdateNote = () => {
         editNote({
+            id: note.id,
             title: editedTitle,
             content: editedContent,
             color: editedColor,

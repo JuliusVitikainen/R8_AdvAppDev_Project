@@ -16,6 +16,7 @@ const NewNoteScreen: React.FC = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [color, setColor] = useState('lightblue');
+    const [id, setId] = useState()
 
     const colorOptions = [
         { label: "Blue", value: "lightblue" },
@@ -27,6 +28,10 @@ const NewNoteScreen: React.FC = () => {
     const handleColorSelect = (color) => {
         setColor(color);
     };
+
+    const handleID = (id) => {
+        setId(id)
+    }
 
     const renderColorOption = (colorOption) => (
         <TouchableOpacity
@@ -40,9 +45,13 @@ const NewNoteScreen: React.FC = () => {
         />
     );
 
+    const previousID = 0;
+
     const handleAddNote = () => {
+        handleID(previousID + 1);
         if (title.trim() !== '' && content.trim() !== '') {
             addNote({
+                id,
                 title,
                 content,
                 color,
