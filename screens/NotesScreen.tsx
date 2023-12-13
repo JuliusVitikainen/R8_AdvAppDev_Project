@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import Note from '../components/Note';
 import { useNoteContext } from '../contexts/NoteContext';
 

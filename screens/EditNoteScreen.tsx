@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button, TextInput } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button, TextInput, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useNoteContext } from '../contexts/NoteContext';
 
 const EditNotesScreen: React.FC = () => {
     const navigation = useNavigation<any>();
-
-    const { editNote } = useNoteContext();
-
+    const { editNote, deleteNote } = useNoteContext();
     const route = useRoute();
     const { note }  = route.params;
 
@@ -36,7 +34,7 @@ const EditNotesScreen: React.FC = () => {
 
     useEffect(() => {
         navigation.setOptions({
-            title: "Edit Note"
+            title: "Edit Note",
         });
     }, [navigation]);
 
@@ -60,6 +58,28 @@ const EditNotesScreen: React.FC = () => {
         navigation.navigate("NotesScreen");
     };
 
+    const handleDeleteNote = () => {
+        Alert.alert(
+            "Delete Note",
+            "Are you sure you want to delete this note?",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel",
+                },
+                {
+                    text: "Delete",
+                    onPress: () => {
+                        deleteNote(note.title);
+                        navigation.navigate("NotesScreen");
+                    },
+                    style: "destructive",
+                },
+            ],
+            { cancelable: true }
+        );
+    };
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -78,7 +98,14 @@ const EditNotesScreen: React.FC = () => {
             <View style={styles.colorOptionsContainer}>
                 {colorOptions.map(renderColorOption)}
             </View>
-            <Button title="Update Note" onPress={handleUpdateNote} />
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.updateButton} onPress={handleUpdateNote}>
+                    <Text style={styles.buttonText}>Update Note</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteNote}>
+                    <Text style={styles.buttonText}>Delete Note</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -120,6 +147,25 @@ const styles = StyleSheet.create({
     },
     selectedColorOption: {
         borderColor: 'blue',
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    updateButton: {
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 8,
+    },
+    deleteButton: {
+        backgroundColor: 'red',
+        padding: 10,
+        borderRadius: 8,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
     },
 });
 

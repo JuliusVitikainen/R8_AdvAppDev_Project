@@ -5,6 +5,7 @@ interface NoteContextType {
     notes: NoteData[];
     addNote: (note: NoteData) => void;
     editNote: (note: NoteData) => void;
+    deleteNote: (title: string) => void;
 }
 
 const NoteContext = createContext<NoteContextType | undefined>(undefined);
@@ -34,8 +35,12 @@ export const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
         });
     };
 
+    const deleteNote = (titleToDelete: string) => {
+        setNotes((prevNotes) => prevNotes.filter((note) => note.title !== titleToDelete));
+    };
+
     return (
-        <NoteContext.Provider value={{ notes, addNote, editNote }}>
+        <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote }}>
             {children}
         </NoteContext.Provider>
     );
