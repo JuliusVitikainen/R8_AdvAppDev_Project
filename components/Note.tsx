@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         padding: 16,
         margin: 8,
         marginBottom: 16,
-        aspectRatio: 1, // Ensure a square aspect ratio
+        aspectRatio: 1,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
