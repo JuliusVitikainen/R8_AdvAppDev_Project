@@ -8,10 +8,10 @@ const NewNoteScreen: React.FC = () => {
     const navigation = useNavigation();
 
     const newNote = [
-        {id: '9', title: "Note 9", content: "Note Text 9" }
+        {id: '9', title: "Note 9", content: "Note Text 9" } //Demo new note should have proper input possibility and way to add the new note to the existing list.
     ];
 
-    const renderNote = ({ item }) => <Note title={item.title} content={item.content} color={item.color} />;
+    const renderNote = ({ item }) => <Note title={item.title} content={item.content} color={item.color} />; //Needs better centering etc styling for making the note.
 
     return (
         <View style={styles.container}>

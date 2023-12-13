@@ -8,7 +8,7 @@ import NewNoteScreen from './NewNoteScreen';
 const NotesScreen: React.FC = () => {
     const navigation = useNavigation();
     
-    const notesData = [
+    const notesData = [ //These need to be auto-incremented or making new notes is painful. This array might need to be exported for global use to add the new notes to it.
         { id: '1', title: "Note 1", content: "Note text 1", color: "lightgreen" },
         { id: '2', title: "Note 2", content: "Note text 2" },
         { id: '3', title: "Note 3", content: "Note text 3" },
@@ -28,8 +28,7 @@ const NotesScreen: React.FC = () => {
                 <TouchableOpacity
                     style={styles.plusButton}
                     onPress={() => {
-                        navigation.navigate('NewNoteScreen')
-                        console.log("Add functionality here");
+                        navigation.navigate('NewNoteScreen') //Navigates us to a NewNoteScreen. No idea why it shows overload error.
                     }}
                 >
                     <Text style={styles.plusButtonText}>+</Text>
