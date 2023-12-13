@@ -8,7 +8,7 @@ import { useNoteContext } from '../contexts/NoteContext';
 const NotesScreen: React.FC = () => {
     const navigation = useNavigation<any>();
 
-    const { notes, addNote } = useNoteContext();
+    const { notes } = useNoteContext();
 
     const renderNote = ({ item }) => <Note title={item.title} content={item.content} color={item.color} />;
 

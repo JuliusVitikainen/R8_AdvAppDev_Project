@@ -9,12 +9,13 @@ interface NoteProps {
 
 const { width } = Dimensions.get('window');
 const noteSize = (width - 32) / 2 - 16;
+const maxLines = 6;
 
 const Note: React.FC<NoteProps> = ({ title, content, color = "lightblue" }) => {
     return (
         <View style={[styles.note, { width: noteSize, height: noteSize, backgroundColor: color }]}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.content}>{content}</Text>
+            <Text numberOfLines={maxLines} style={styles.content}>{content}</Text>
         </View>
     );
 };
