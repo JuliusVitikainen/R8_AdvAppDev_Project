@@ -19,10 +19,7 @@ const NotesScreen: React.FC = () => {
                 <TouchableOpacity
                     style={styles.plusButton}
                     onPress={() => {
-                        addNote({
-                            title: "Test note",
-                            content: "Text"
-                        })
+                        navigation.navigate("NewNoteScreen");
                     }}
                 >
                     <Text style={styles.plusButtonText}>+</Text>

@@ -1,27 +1,55 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { useNoteContext } from '../contexts/NoteContext'; 
 import { useNavigation } from '@react-navigation/native';
 
-import Note from '../components/Note';
-
 const NewNoteScreen: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
-    const newNote = [
-        {id: '9', title: "Note 9", content: "Note Text 9" } //Demo new note should have proper input possibility and way to add the new note to the existing list.
-    ];
+    useEffect(() => {
+        navigation.setOptions({
+            title: "Add Note"
+        });
+    }, [navigation]);
+    
+    const { addNote } = useNoteContext();
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [color, setColor] = useState('lightblue');
 
-    const renderNote = ({ item }) => <Note title={item.title} content={item.content} color={item.color} />; //Needs better centering etc styling for making the note.
+    const handleAddNote = () => {
+        if (title.trim() !== '' && content.trim() !== '') {
+            addNote({
+                title,
+                content,
+                color,
+            });
+            navigation.navigate("NotesScreen");
+        }
+    };
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={newNote}
-                renderItem={renderNote}
-                keyExtractor={(item) => item.id}
-                numColumns={2}
-                contentContainerStyle={styles.noteList}
+            <TextInput
+                style={styles.titleInput}
+                placeholder="Title"
+                value={title}
+                onChangeText={(text) => setTitle(text)}
             />
+            <TextInput
+                style={styles.largeInput}
+                placeholder="Content"
+                value={content}
+                onChangeText={(text) => setContent(text)}
+                multiline
+            />
+            <TextInput
+                style={styles.titleInput}
+                placeholder="Color"
+                value={color}
+                onChangeText={(text) => setColor(text)}
+            />
+            <Button title="Add Note" onPress={handleAddNote} />
         </View>
     );
 };
@@ -29,18 +57,22 @@ const NewNoteScreen: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f5f5f5",
+        padding: 16,
     },
-    noteList: {
+    titleInput: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 16,
         paddingHorizontal: 8,
-        paddingTop: 8,
     },
-    plusButton: {
-        marginRight: 16,
-    },
-    plusButtonText: {
-        fontSize: 24,
-        color: "blue"
+    largeInput: {
+        height: 120,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 16,
+        paddingHorizontal: 8,
+        textAlignVertical: 'top',
     },
 });
 
