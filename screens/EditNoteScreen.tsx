@@ -1,8 +1,6 @@
-// EditNotesScreen.tsx
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Button, TextInput, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-
 import { useNoteContext } from '../contexts/NoteContext';
 
 const EditNotesScreen: React.FC = () => {

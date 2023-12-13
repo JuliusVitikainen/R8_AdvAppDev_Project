@@ -4,6 +4,7 @@ import { useNoteContext } from '../contexts/NoteContext';
 import { useNavigation } from '@react-navigation/native';
 
 const NewNoteScreen: React.FC = () => {
+    
     const navigation = useNavigation<any>();
 
     useEffect(() => {
