@@ -100,9 +100,11 @@ const EditNotesScreen: React.FC = () => {
                 {colorOptions.map(renderColorOption)}
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="Update Note" onPress={handleUpdateNote} />
+                <TouchableOpacity style={styles.updateButton} onPress={handleUpdateNote}>
+                    <Text style={styles.buttonText}>Update Note</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteNote}>
-                    <Text style={styles.deleteButtonText}>Delete Note</Text>
+                    <Text style={styles.buttonText}>Delete Note</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -152,12 +154,17 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 20,
     },
+    updateButton: {
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 8,
+    },
     deleteButton: {
         backgroundColor: 'red',
         padding: 10,
         borderRadius: 8,
     },
-    deleteButtonText: {
+    buttonText: {
         color: 'white',
         fontSize: 16,
     },
