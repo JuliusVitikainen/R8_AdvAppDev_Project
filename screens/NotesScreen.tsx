@@ -3,6 +3,7 @@ import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native
 import { useNavigation } from '@react-navigation/native';
 
 import Note from '../components/Note';
+import NewNoteScreen from './NewNoteScreen';
 
 const NotesScreen: React.FC = () => {
     const navigation = useNavigation();
@@ -27,6 +28,7 @@ const NotesScreen: React.FC = () => {
                 <TouchableOpacity
                     style={styles.plusButton}
                     onPress={() => {
+                        navigation.navigate('NewNoteScreen')
                         console.log("Add functionality here");
                     }}
                 >
