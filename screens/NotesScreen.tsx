@@ -20,8 +20,6 @@ const NotesScreen: React.FC = () => {
             onPress={() => {
                 // Navigate to the EditNoteScreen with the selected note as a parameter
                 navigation.navigate('EditNoteScreen', { note: item });
-                console.log('Keys:', notes.map((item) => item.id));
-                console.log(notes[0].id)
             }}
         >
             {/* Render the Note component with title, content, and color from the note */}
