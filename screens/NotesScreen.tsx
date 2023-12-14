@@ -1,28 +1,37 @@
+// Imports
 import React, { useEffect } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Note from '../components/Note';
 import { useNoteContext } from '../contexts/NoteContext';
 
+// Define the functional component for the NotesScreen
 const NotesScreen: React.FC = () => {
+    // Access the navigation object using the useNavigation hook
     const navigation = useNavigation<any>();
 
+    // Access the notes data from the NoteContext using the useNoteContext hook
     const { notes } = useNoteContext();
 
+    // Function to render an individual note in the FlatList
     const renderNote = ({ item }) => (
         <TouchableOpacity
             onPress={() => {
+                // Navigate to the EditNoteScreen with the selected note as a parameter
                 navigation.navigate('EditNoteScreen', { note: item });
             }}
         >
+            {/* Render the Note component with title, content, and color from the note */}
             <Note title={item.title} content={item.content} color={item.color} />
         </TouchableOpacity>
     );
 
+    // useEffect hook to set options for the navigation header
     useEffect(() => {
         navigation.setOptions({
             title: "Notes",
             headerRight: () => (
+                // Render a "+" button on the header to navigate to the NewNoteScreen
                 <TouchableOpacity
                     style={styles.plusButton}
                     onPress={() => {
@@ -35,8 +44,10 @@ const NotesScreen: React.FC = () => {
         });
     }, [navigation]);
 
+    // Return the main view of the NotesScreen
     return (
         <View style={styles.container}>
+            {/* Render a FlatList of notes with 2 columns */}
             <FlatList
                 data={notes}
                 renderItem={renderNote}
@@ -48,6 +59,7 @@ const NotesScreen: React.FC = () => {
     );
 };
 
+// Define the styles for the NotesScreen component
 const styles = StyleSheet.create({
     container: {
         flex: 1,
