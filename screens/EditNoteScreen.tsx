@@ -168,12 +168,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     updateButton: {
-        backgroundColor: 'blue',
+        backgroundColor: '#71aef2',
         padding: 10,
         borderRadius: 8,
     },
     deleteButton: {
-        backgroundColor: 'red',
+        backgroundColor: '#ea5645',
         padding: 10,
         borderRadius: 8,
     },
