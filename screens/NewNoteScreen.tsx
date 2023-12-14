@@ -3,22 +3,29 @@ import { View, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-nat
 import { useNoteContext } from '../contexts/NoteContext'; 
 import { useNavigation } from '@react-navigation/native';
 
+// Define the functional component for the NewNoteScreen
 const NewNoteScreen: React.FC = () => {
     
+    // Access the navigation object using the useNavigation hook
     const navigation = useNavigation<any>();
 
+    // useEffect hook to set options for the navigation header
     useEffect(() => {
         navigation.setOptions({
             title: "Add Note"
         });
     }, [navigation]);
     
+    // Access the addNote function from the NoteContext using the useNoteContext hook
     const { addNote } = useNoteContext();
+
+    // State variables to manage the title, content, color, and ID of the new note
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [color, setColor] = useState('lightblue');
-    const [id, setId] = useState()
+    const [id, setId] = useState();
 
+    // Array of color options for the new note
     const colorOptions = [
         { label: "Blue", value: "lightblue" },
         { label: "Green", value: "lightgreen" },
@@ -26,14 +33,17 @@ const NewNoteScreen: React.FC = () => {
         { label: "Pink", value: "#f6c2d9" },
     ];
 
+    // Function to handle color selection for the new note
     const handleColorSelect = (color) => {
         setColor(color);
     };
 
+    // Function to handle the ID of the new note
     const handleID = (id) => {
         setId(id)
     }
 
+    // Function to render individual color options for the new note
     const renderColorOption = (colorOption) => (
         <TouchableOpacity
             key={colorOption.value}
@@ -46,8 +56,10 @@ const NewNoteScreen: React.FC = () => {
         />
     );
 
+    // Initialize the previous ID for the new note
     const previousID = 0;
 
+    // Function to handle the addition of a new note
     const handleAddNote = () => {
         handleID(previousID + 1);
         if (title.trim() !== '' && content.trim() !== '') {
@@ -57,18 +69,23 @@ const NewNoteScreen: React.FC = () => {
                 content,
                 color,
             });
+            
+            // Navigate back to the NotesScreen after adding the note
             navigation.navigate("NotesScreen");
         }
     };
 
+    // Return the main view of the NewNoteScreen
     return (
         <View style={styles.container}>
+            {/* Input field for the title of the new note */}
             <TextInput
                 style={styles.titleInput}
                 placeholder="Title"
                 value={title}
                 onChangeText={(text) => setTitle(text)}
             />
+            {/* Input field for the content of the new note */}
             <TextInput
                 style={styles.largeInput}
                 placeholder="Content"
@@ -76,14 +93,17 @@ const NewNoteScreen: React.FC = () => {
                 onChangeText={(text) => setContent(text)}
                 multiline
             />
+            {/* Container for rendering color options for the new note */}
             <View style={styles.colorOptionsContainer}>
                 {colorOptions.map(renderColorOption)}
             </View>
+            {/* Button to trigger the addition of the new note */}
             <Button title="Add Note" onPress={handleAddNote} />
         </View>
     );
 };
 
+// Define styles for the NewNoteScreen component
 const styles = StyleSheet.create({
     container: {
         flex: 1,
