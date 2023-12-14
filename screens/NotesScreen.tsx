@@ -3,6 +3,7 @@ import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from 'reac
 import { useNavigation } from '@react-navigation/native';
 import Note from '../components/Note';
 import { useNoteContext } from '../contexts/NoteContext';
+import StickyNoteHeader from '../components/StickyNoteHeader';
 
 const NotesScreen: React.FC = () => {
     const navigation = useNavigation<any>();
@@ -22,6 +23,9 @@ const NotesScreen: React.FC = () => {
     useEffect(() => {
         navigation.setOptions({
             title: "Notes",
+            headerLeft: () => (
+                <StickyNoteHeader imageUrl={{ uri: "https://static.vecteezy.com/system/resources/previews/021/880/376/original/colored-post-it-note-paper-rounded-edges-sticky-notes-for-reminders-png.png" }} />
+            ),
             headerRight: () => (
                 <TouchableOpacity
                     style={styles.plusButton}
