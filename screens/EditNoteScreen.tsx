@@ -17,6 +17,7 @@ const EditNotesScreen: React.FC = () => {
     ];
 
     const handleColorSelect = (color) => {
+        // Update the selected color for the edited note
         setEditedColor(color);
     };
 
@@ -33,6 +34,7 @@ const EditNotesScreen: React.FC = () => {
     );
 
     useEffect(() => {
+        // Set options for the navigation header
         navigation.setOptions({
             title: "Edit Note",
         });
@@ -43,22 +45,26 @@ const EditNotesScreen: React.FC = () => {
     const [editedColor, setEditedColor] = useState(note.color);
 
     useEffect(() => {
+        // Update state variables when the note prop changes
         setEditedTitle(note.title);
         setEditedContent(note.content);
         setEditedColor(note.color);
     }, [note]);
 
     const handleUpdateNote = () => {
+        // Update the note with the edited information
         editNote({
             id: note.id,
             title: editedTitle,
             content: editedContent,
             color: editedColor,
         });
+        // Navigate back to the NotesScreen
         navigation.navigate("NotesScreen");
     };
 
     const handleDeleteNote = () => {
+        // Display an alert to confirm the deletion of the note
         Alert.alert(
             "Delete Note",
             "Are you sure you want to delete this note?",
@@ -70,6 +76,7 @@ const EditNotesScreen: React.FC = () => {
                 {
                     text: "Delete",
                     onPress: () => {
+                        // Delete the note and navigate back to the NotesScreen
                         deleteNote(note.title);
                         navigation.navigate("NotesScreen");
                     },
@@ -82,12 +89,14 @@ const EditNotesScreen: React.FC = () => {
 
     return (
         <View style={styles.container}>
+            {/* Input field for the title of the edited note */}
             <TextInput
                 style={styles.titleInput}
                 placeholder="Title"
                 value={editedTitle}
                 onChangeText={(text) => setEditedTitle(text)}
             />
+            {/* Input field for the content of the edited note */}
             <TextInput
                 style={styles.largeInput}
                 placeholder="Content"
@@ -95,13 +104,17 @@ const EditNotesScreen: React.FC = () => {
                 onChangeText={(text) => setEditedContent(text)}
                 multiline
             />
+            {/* Container for rendering color options for the edited note */}
             <View style={styles.colorOptionsContainer}>
                 {colorOptions.map(renderColorOption)}
             </View>
+            {/* Container for update and delete buttons */}
             <View style={styles.buttonContainer}>
+                {/* Button to trigger the update of the edited note */}
                 <TouchableOpacity style={styles.updateButton} onPress={handleUpdateNote}>
                     <Text style={styles.buttonText}>Update Note</Text>
                 </TouchableOpacity>
+                {/* Button to trigger the deletion of the edited note */}
                 <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteNote}>
                     <Text style={styles.buttonText}>Delete Note</Text>
                 </TouchableOpacity>
@@ -110,6 +123,7 @@ const EditNotesScreen: React.FC = () => {
     );
 };
 
+// Define styles for the EditNotesScreen component
 const styles = StyleSheet.create({
     container: {
         flex: 1,
