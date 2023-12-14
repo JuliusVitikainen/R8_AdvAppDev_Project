@@ -21,7 +21,6 @@ const NewNoteScreen: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [color, setColor] = useState('lightblue');
-  const [id, setId] = useState();
 
   // Array of color options for the new note
   const colorOptions = [
@@ -36,11 +35,6 @@ const NewNoteScreen: React.FC = () => {
       setColor(color);
   };
 
-  // Function to handle the ID of the new note
-  const handleID = (id) => {
-      setId(id)
-  }
-
   // Function to render individual color options for the new note
   const renderColorOption = (colorOption) => (
       <TouchableOpacity
@@ -54,18 +48,14 @@ const NewNoteScreen: React.FC = () => {
       />
   );
 
-  // Initialize the previous ID for the new note
-  const previousID = 0;
-
   // State variable to control the visibility of the modal
   const [modalVisible, setModalVisible] = useState(false);
 
   // Function to handle the addition of a new note
   const handleAddNote = () => {
-      handleID(previousID + 1);
       if (title.trim() !== '' && content.trim() !== '') {
           addNote({
-              id,
+              id: Math.floor(Math.random() * 1000000),
               title,
               content,
               color,
