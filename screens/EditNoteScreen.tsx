@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,
-        marginBottom: 30,
+        marginBottom: 20,
         paddingHorizontal: 8,
     },
     largeInput: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: 30,
-        paddingHorizontal: 8,
+        paddingHorizontal: 12,
         textAlignVertical: 'top',
     },
     colorOptionsContainer: {
