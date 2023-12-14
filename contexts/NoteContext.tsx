@@ -41,7 +41,7 @@ export const NoteProvider: React.FC<NoteProviderProps> = ({ children }) => {
     };
 
     // Function to delete a note from the list based on its title
-    const deleteNote = (titleToDelete: string) => { // This does not do anything currently.
+    const deleteNote = (titleToDelete: string) => {
         setNotes((prevNotes) => prevNotes.filter((note) => note.title !== titleToDelete));
     };
 
