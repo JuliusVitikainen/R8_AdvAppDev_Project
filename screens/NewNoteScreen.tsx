@@ -95,7 +95,7 @@ const NewNoteScreen: React.FC = () => {
           <Button title="Add Note" onPress={handleAddNote} />
           {/* Render the modal */}
           <Modal
-              animationType="slide"
+              animationType="fade"
               transparent={true}
               visible={modalVisible}
               onRequestClose={() => {
@@ -104,12 +104,6 @@ const NewNoteScreen: React.FC = () => {
               <View style={{ marginTop: 160 }}>
                <View>
                   <Text style={styles.noteAddedText}>Note Added</Text>
-                  <Button
-                      title="Close"
-                      onPress={() => {
-                          setModalVisible(!modalVisible);
-                      }}
-                  />
                </View>
               </View>
           </Modal>
@@ -129,7 +123,7 @@ const styles = StyleSheet.create({
       height: 40,
       borderColor: 'gray',
       borderWidth: 1,
-      marginBottom: 30,
+      marginBottom: 20,
       paddingHorizontal: 8,
   },
   largeInput: {
@@ -138,7 +132,7 @@ const styles = StyleSheet.create({
       borderColor: 'gray',
       borderWidth: 1,
       marginBottom: 30,
-      paddingHorizontal: 8,
+      paddingHorizontal: 12,
       textAlignVertical: 'top',
   },
   colorOptionsContainer: {
