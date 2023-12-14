@@ -111,7 +111,7 @@ const NewNoteScreen: React.FC = () => {
               onRequestClose={() => {
                alert('Modal has been closed.');
               }}>
-              <View style={{ marginTop: 22 }}>
+              <View style={{ marginTop: 160 }}>
                <View>
                   <Text style={styles.noteAddedText}>Note Added</Text>
                   <Button
